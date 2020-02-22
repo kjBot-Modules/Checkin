@@ -12,7 +12,7 @@ class Checkin extends Module{
         $id = $event->getId();
         $user = new Model($id);
         $userEconomy = new Economy($id);
-        $isSupporter = (Access::Control($event))->getLevel() > AccessLevel::Supporter;
+        $isSupporter = (Access::Control($event))->getLevel() >= AccessLevel::Supporter;
         if($user->checkin()){
             $bonus = rand(40, 60);
             $extraBonus = $isSupporter?rand(0.4*$bonus, 0.6*$bonus):0;
